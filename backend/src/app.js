@@ -1,9 +1,9 @@
-import config from './config.js';
+import config from './config';
 import mongoose from 'mongoose';
 import express, { urlencoded } from 'express';
 import cors from 'cors';
-import positionRoute from './Position/index.js';
-import errorHandler from './utils.js';
+import positionRoute from './Position/';
+import errorHandler from './utils';
 
 const { mongo, port } = config;
 

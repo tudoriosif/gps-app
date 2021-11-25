@@ -1,11 +1,4 @@
 import path from 'path';
-import { createRequire } from 'module';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const require = createRequire(import.meta.url);
 
 const dotenv = require('dotenv').config({
 	path: path.resolve(__dirname, '../.env')
@@ -21,5 +14,6 @@ const config = {
 	},
 	port: process.env.PORT,
 }
+
 
 export default config;

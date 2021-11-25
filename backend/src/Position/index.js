@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAllPositions, createPosition, updatePosition, deletePosition, getPosition } from './controller.js';
+import { getAllPositions, createPosition, updatePosition, deletePosition, getPosition } from './controller';
 
 const router = new Router();
 

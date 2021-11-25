@@ -4,7 +4,7 @@
   "description": "",
   "main": "src",
   "scripts": {
-    "dev": "nodemon ./src/app.js",
+    "dev": "nodemon --exec babel-node ./src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,5 +18,9 @@
     "mongoose": "^6.0.13",
     "path": "^0.12.7"
   },
-  "type": "module"
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/preset-env": "^7.16.4"
+  }
 }
