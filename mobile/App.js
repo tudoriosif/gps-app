@@ -15,7 +15,7 @@ export default function App() {
         <View style={styles.container}>
             <StatusBar style="auto" />
             <View style={styles.logoView}>
-                <Text style={styles.logoText}> SCD </Text>
+                <Text style={styles.logoText}> SCD -- </Text>
                 <Text style={styles.logoText}> Project </Text>
             </View>
             <View style={styles.inputView}>
