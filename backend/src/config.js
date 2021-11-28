@@ -13,6 +13,7 @@ const config = {
 		uri: process.env.MONGODB_URI
 	},
 	port: process.env.PORT,
+	secretKey: process.env.JWT_SECRET_KEY,
 }
 
 

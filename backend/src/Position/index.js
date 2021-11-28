@@ -1,7 +1,10 @@
 import { Router } from 'express';
+import passport from 'passport';
 import { getAllPositions, createPosition, updatePosition, deletePosition, getPosition } from './controller';
 
 const router = new Router();
+
+router.use(passport.authenticate('jwt', { session: false }));
 
 router.get('/', getAllPositions);
 
