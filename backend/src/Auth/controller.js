@@ -17,7 +17,7 @@ export const loginUser = async (req, res, next) => {
       }
 
       const payload = {
-        userID: user.userID,
+        userID: user._id,
         username: user.username,
       };
 

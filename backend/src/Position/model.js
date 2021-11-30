@@ -14,6 +14,10 @@ const positionSchema = new mongoose.Schema(
 			type: Number,
 			required: true,
 		},
+        user: {
+            type: mongoose.Types.ObjectId,
+            ref: 'User',
+        }
 	},
 	{
         timestamps: true,

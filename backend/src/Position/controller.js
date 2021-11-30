@@ -1,10 +1,12 @@
 import dayjs from 'dayjs';
 import Position from './model';
+import User from '../User/model';
 import { timeAggregation } from './service';
 
 export const getAllPositions = async (req, res, next) => {
 	try {
-		const allPositions = await Position.find();
+        const { user } = req;
+		const allPositions = await Position.find({ user: user.userID });
 
 		return res.status(200).json(allPositions);
 	} catch (error) {
@@ -14,14 +16,14 @@ export const getAllPositions = async (req, res, next) => {
 
 export const getPosition = async (req, res, next) => {
 	try {
-		const { query, params } = req;
+		const { query, params, user } = req;
 
 		const { terminalId } = params;
 
 		const startDate = dayjs(query.startDate).toISOString().substring(0, 10);
 		const endDate = dayjs(query.endDate).add(2, 'day').toISOString().substring(0, 10);
 
-		const specificPositions = await Position.aggregate(timeAggregation(terminalId, startDate, endDate));
+		const specificPositions = await Position.aggregate(timeAggregation(terminalId, startDate, endDate, user.userID));
 
 		return res.status(200).json(specificPositions);
 	} catch (error) {
@@ -31,8 +33,9 @@ export const getPosition = async (req, res, next) => {
 
 export const createPosition = async (req, res, next) => {
 	try {
-		const { body } = req;
-		const newPosition = await Position.create(body);
+		const { body, user } = req;
+
+        const newPosition = await Position.create({ ...body, user: user.userID });
 
 		return res.status(200).json(newPosition);
 	} catch (error) {
@@ -58,7 +61,7 @@ export const deletePosition = async (req, res, next) => {
 		const { params } = req;
 		const { terminalId } = params;
 
-		const { deletedCount } = await Position.deleteOne({ terminalId });
+		const { deletedCount } = await Position.deleteMany({ terminalId });
 
 		if(deletedCount < 1) return res.status(404).json({ message: 'Entry not found!' });
 
