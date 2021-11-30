@@ -4,12 +4,33 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
+    ToastAndroid,
     View,
 } from "react-native";
+import axios from "axios";
+import { API_URL } from "@env";
+import deviceStorage from "../services/deviceStorage";
 
 const LoginScreen = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    const loginUser = () => {
+        if (username && password) {
+            axios.post(`${API_URL}/login`, {
+                username,
+                password
+            })
+                .then((response) => deviceStorage.saveItem("token", response.data.token))
+                .then((response) => {
+                    navigation.navigate('Dashboard');
+                })
+                .catch((error) => {
+                    ToastAndroid.show("Credentials are invalid!", ToastAndroid.SHORT);
+                });
+        }
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.logoView}>
@@ -34,7 +55,7 @@ const LoginScreen = ({ navigation }) => {
                 />
             </View>
 
-            <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('Dashboard')}>
+            <TouchableOpacity style={styles.loginBtn} onPress={loginUser}>
                 <Text style={styles.loginText}>Login</Text>
             </TouchableOpacity>
         </View>
@@ -52,7 +73,6 @@ const styles = StyleSheet.create({
     },
 
     logoView: {
-        alignItems: "center",
         paddingBottom: "15%",
     },
 
@@ -88,8 +108,7 @@ const styles = StyleSheet.create({
     },
 
     logoText: {
-        fontSize: 52,
-        fontFamily: "Roboto",
+        fontSize: 54,
         fontWeight: "bold",
     },
 });
