@@ -17,7 +17,9 @@ const LoginScreen = ({ navigation }) => {
 
     const loginUser = () => {
         if (username && password) {
-            axios.post(`${API_URL}/login`, {
+            const uri = `${API_URL}/login`;
+
+            axios.post(uri, {
                 username,
                 password
             })

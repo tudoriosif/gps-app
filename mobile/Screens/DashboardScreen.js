@@ -32,7 +32,9 @@ const DashboardScreen = ({ navigation }) => {
             setLat(latitude);
             setLong(longitude);
 
-            axios.post(`${API_URL}/positions`, {
+            const uri = `${API_URL}/positions`;
+
+            axios.post(uri, {
                 latitude,
                 longitude,
                 terminalId: deviceID,
