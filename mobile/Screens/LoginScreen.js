@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     },
 
     logoView: {
+        alignItems: "center",
         paddingBottom: "15%",
     },
 
@@ -110,5 +111,6 @@ const styles = StyleSheet.create({
     logoText: {
         fontSize: 54,
         fontWeight: "bold",
+        color: "#606060",
     },
 });

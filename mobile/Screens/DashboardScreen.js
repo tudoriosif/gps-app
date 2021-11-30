@@ -153,5 +153,6 @@ const styles = StyleSheet.create({
 
     dataText: {
         fontSize: 24,
+        color: "#606060",
     }
 });
